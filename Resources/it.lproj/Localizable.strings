@@ -1,0 +1,9 @@
+
+"instap4tch0.generic.yes" = "Sì";
+"instap4tch0.generic.no" = "No";
+"instap4tch0.generic.warning" = "Attenzione";
+
+"instap4tch0.alert.double_tap_guard.message" = "Vuoi mettere il like a %@?";
+"instap4tch0.alert.double_tap_guard.type.photo" = "questa foto";
+"instap4tch0.alert.double_tap_guard.type.photos" = "queste foto";
+"instap4tch0.alert.double_tap_guard.type.video" = "questo video";
