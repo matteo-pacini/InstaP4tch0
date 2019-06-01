@@ -2,8 +2,17 @@
 "instap4tch0.generic.yes" = "Sì";
 "instap4tch0.generic.no" = "No";
 "instap4tch0.generic.warning" = "Attenzione";
+"instap4tch0.generic.dismiss" = "Chiudi";
 
-"instap4tch0.alert.double_tap_guard.message" = "Vuoi mettere il like a %@?";
+"instap4tch0.alert.double_tap_guard.message" = "Vuoi mettere mi piace a %@?";
 "instap4tch0.alert.double_tap_guard.type.photo" = "questa foto";
 "instap4tch0.alert.double_tap_guard.type.page" = "queste pagine";
 "instap4tch0.alert.double_tap_guard.type.video" = "questo video";
+
+"instap4tch0.settings.sponsored_content" = "Contenuti sponsorizzati";
+"instap4tch0.settings.sponsored_content.hide" = "Nascondi";
+"instap4tch0.settings.double_tap_guard" = "Protezione doppio tap";
+"instap4tch0.settings.double_tap_guard.photo" = "Foto";
+"instap4tch0.settings.double_tap_guard.page" = "Pagine";
+"instap4tch0.settings.double_tap_guard.video" = "Video";
+"instap4tch0.settings.actions" = "Azioni";
