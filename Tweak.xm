@@ -2,9 +2,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import <lib/UIAlertController+Utils.h>
-#import <lib/NSBundle+Localisation.h>
-#import <lib/UIImage+Resources.h>
+#import <instap4tch0-Swift.h>
 
 @interface IGMainAppHeaderView: UIView
 @end
@@ -39,7 +37,7 @@
 
 + (UIImage *)imageNamed:(NSString *)name {
 	if ([name isEqualToString:@"logotype-feed"]) {
-		return IMG_LOGO;
+		return [[UIImage alloc] initWithResource: ImageResourceLogo];
 	}
 	return %orig;
 }
@@ -49,7 +47,7 @@
 %hook IGFeedItemPhotoCell
 
 - (void)feedPhotoDidDoubleTapToLike:(id)tap locationInfo:(id)locationInfo {
-	[[UIAlertController likeAlertWithType:L(@"instap4tch0.alert.double_tap_guard.type.photo") successBlock: ^{
+	[[UIAlertController likeAlertWithPostType:PostTypePhoto success: ^{
 		%orig;
 	}] show];
 }
@@ -59,7 +57,7 @@
 %hook IGFeedItemPageCell
 
 - (void)pageMediaViewDidDoubleTap:(id)tap {
-	[[UIAlertController likeAlertWithType:L(@"instap4tch0.alert.double_tap_guard.type.photos") successBlock: ^{
+	[[UIAlertController likeAlertWithPostType:PostTypePage success: ^{
 		%orig;
 	}] show];
 }
@@ -69,7 +67,7 @@
 %hook IGFeedItemVideoCell
 
 - (void)didDoubleTapFeedItemVideoView:(id)tap {
-	[[UIAlertController likeAlertWithType:L(@"instap4tch0.alert.double_tap_guard.type.video") successBlock: ^{
+	[[UIAlertController likeAlertWithPostType:PostTypeVideo success: ^{
 		%orig;
 	}] show];
 }

@@ -5,5 +5,5 @@
 
 "instap4tch0.alert.double_tap_guard.message" = "Do you want to like %@?";
 "instap4tch0.alert.double_tap_guard.type.photo" = "this photo";
-"instap4tch0.alert.double_tap_guard.type.photos" = "these photos";
+"instap4tch0.alert.double_tap_guard.type.page" = "these pages";
 "instap4tch0.alert.double_tap_guard.type.video" = "this video";

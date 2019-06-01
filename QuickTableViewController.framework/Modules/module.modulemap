@@ -1,0 +1,11 @@
+framework module QuickTableViewController {
+  umbrella header "QuickTableViewController.h"
+
+  export *
+  module * { export * }
+}
+
+module QuickTableViewController.Swift {
+    header "QuickTableViewController-Swift.h"
+    requires objc
+}
