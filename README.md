@@ -14,13 +14,13 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 
 # Implemented Features
 
+- In app settings to enable/disable features (long press on InstaP4tch0 logo).
 - Localised in: 🇬🇧, 🇮🇹.
 - Hide sponsored content
 - Present alert on double-tap-to-like
 
 # Coming Soon
 
-- In app settings to enable/disable features.
 - More...
 
 # Not working

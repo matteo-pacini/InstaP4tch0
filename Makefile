@@ -7,10 +7,9 @@ TWEAK_NAME = instap4tch0
 DISPLAY_NAME = InstaP4tch0
 BUNDLE_ID = it.codecraft.instap4tch0
 
-instap4tch0_FILES = Tweak.xm $(wildcard lib/*.m) $(wildcard lib/*.swift)
+instap4tch0_FILES = Tweak.xm $(wildcard lib/*.swift)
 instap4tch0_IPA = ../Instagram.ipa
 instap4tch0_CFLAGS = -fobjc-arc
-instap4tch0_FRAMEWORKS = Foundation UIKit QuickTableViewController
 instap4tch0_EMBED_FRAMEWORKS = QuickTableViewController.framework
 instap4tch0_USE_FLEX = 1
 
