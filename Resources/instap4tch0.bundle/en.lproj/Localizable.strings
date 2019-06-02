@@ -1,0 +1,20 @@
+
+"generic.yes" = "Yes";
+"generic.no" = "No";
+"generic.warning" = "Warning";
+"generic.dismiss" = "Dismiss";
+
+"alert.double_tap_guard.message" = "Do you want to like %@?";
+"alert.double_tap_guard.type.photo" = "this photo";
+"alert.double_tap_guard.type.page" = "these pages";
+"alert.double_tap_guard.type.video" = "this video";
+
+"settings.sponsored_content" = "Sponsored content";
+"settings.sponsored_content.hide" = "Hide";
+"settings.double_tap_guard" = "Double tap guard";
+"settings.double_tap_guard.photo" = "Photo";
+"settings.double_tap_guard.page" = "Pages";
+"settings.double_tap_guard.video" = "Video";
+"settings.download" = "Long press to download";
+"settings.download.photo" = "Photo";
+"settings.actions" = "Actions";

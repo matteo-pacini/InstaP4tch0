@@ -16,7 +16,7 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 
 - In app settings to enable/disable features (long press on InstaP4tch0 logo).
 - Localised in: 🇬🇧, 🇮🇹.
-- Hide sponsored content
+- Hide sponsored content.
 - Double tap guard when liking a photo, pages or a video.
 
 # Coming Soon

@@ -1,0 +1,20 @@
+
+"generic.yes" = "Sì";
+"generic.no" = "No";
+"generic.warning" = "Attenzione";
+"generic.dismiss" = "Chiudi";
+
+"alert.double_tap_guard.message" = "Vuoi mettere mi piace a %@?";
+"alert.double_tap_guard.type.photo" = "questa foto";
+"alert.double_tap_guard.type.page" = "queste pagine";
+"alert.double_tap_guard.type.video" = "questo video";
+
+"settings.sponsored_content" = "Contenuti sponsorizzati";
+"settings.sponsored_content.hide" = "Nascondi";
+"settings.double_tap_guard" = "Protezione doppio tap";
+"settings.double_tap_guard.photo" = "Foto";
+"settings.double_tap_guard.page" = "Pagine";
+"settings.double_tap_guard.video" = "Video";
+"settings.download" = "Premi a lungo per scaricare";
+"settings.download.photo" = "Foto";
+"settings.actions" = "Azioni";

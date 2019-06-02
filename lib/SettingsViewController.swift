@@ -16,6 +16,9 @@ public class SettingsViewController: QuickTableViewController {
                 row(named: Bundle.L("settings.double_tap_guard.page"), for: .doubleTapGuardPage),
                 row(named: Bundle.L("settings.double_tap_guard.video"), for: .doubleTapGuardVideo)
             ]),
+            Section(title: Bundle.L("settings.download"), rows: [
+                row(named: Bundle.L("settings.download.photo"), for: .downloadPhoto)
+            ]),
             Section(title: Bundle.L("settings.actions"), rows: [
                 TapActionRow(text: Bundle.L("generic.dismiss"), action: { [weak self] _ in
                     guard let self = self else { return }

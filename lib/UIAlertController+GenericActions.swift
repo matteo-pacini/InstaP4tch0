@@ -13,6 +13,10 @@ extension UIAlertController {
         static func no() -> UIAlertAction {
             return UIAlertAction(title: Bundle.L("generic.no"), style: .default, handler: nil)
         }
+
+        static func dismiss() -> UIAlertAction {
+            return UIAlertAction(title: Bundle.L("generic.dismiss"), style: .default, handler: nil)
+        }
     
     }
 

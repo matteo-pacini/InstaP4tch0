@@ -9,7 +9,7 @@ extension ImageResource {
 
     var imageName: String {
         switch self {
-            case .logo: return "instap4tch0_logo"
+            case .logo: return "logo"
         }
     }
 
@@ -19,7 +19,7 @@ extension UIImage {
 
     @objc
     public convenience init?(resource: ImageResource) {
-        self.init(named: resource.imageName)
+        self.init(named: resource.imageName, in: Bundle.instap4tch0, compatibleWith: nil)
     }
 
 }
