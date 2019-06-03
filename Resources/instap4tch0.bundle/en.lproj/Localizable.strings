@@ -3,11 +3,16 @@
 "generic.no" = "No";
 "generic.warning" = "Warning";
 "generic.dismiss" = "Dismiss";
+"generic.error" = "Error";
+"generic.success" = "Success";
 
 "alert.double_tap_guard.message" = "Do you want to like %@?";
 "alert.double_tap_guard.type.photo" = "this photo";
 "alert.double_tap_guard.type.page" = "these pages";
 "alert.double_tap_guard.type.video" = "this video";
+
+"alert.error.default_message" = "Something went wrong.\nFret not, Zi0P4tch0 will fix it (at some point)!"; 
+"alert.success.photo_downloaded" = "The photo has been downloaded into the InstaP4tch0 album.";
 
 "settings.sponsored_content" = "Sponsored content";
 "settings.sponsored_content.hide" = "Hide";
@@ -17,6 +22,7 @@
 "settings.double_tap_guard.video" = "Video";
 "settings.download" = "Long press to download";
 "settings.download.photo" = "Photo";
+"settings.download.footer" = "Photos and video will be downloaded in the InstaP4tch0 album.";
 "settings.open_source" = "Open source libraries";
 "settings.open_source.footer" = "InstaP4tch0 uses these components to bring you a better Instagram experience.";
 "settings.actions" = "Actions";

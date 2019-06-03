@@ -2,6 +2,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import <MBProgressHUD/MBProgressHUD.h>
+
 #import <instap4tch0-Swift.h>
 #define HAS_FEATURE(X) [IPFeatureManager isFeatureEnabled:Feature##X]
 
@@ -11,6 +13,9 @@
 @end
 
 @interface IGFeedItemPhotoCell: NSObject
+@end
+
+@interface IGFeedItemVideoCell: NSObject
 @end
 
 %hook IGMainFeedItemConfiguration
@@ -74,18 +79,34 @@
 	if (!hasLongPressGR) {
 		id longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget: self 
 		                                                                 action: @selector(didLongPressOnPhoto:)];
-											
 		[photoView addGestureRecognizer: longGestureRecognizer];
 	}
 }
 
 %new
 - (void)didLongPressOnPhoto:(id)sender {
+	static BOOL guard = NO;
 	if (!HAS_FEATURE(DownloadPhoto)) { return; }
+	if (guard) { return; }
+	guard = YES;
+	[sender setEnabled: NO];
 	IGFeedItem *feedItem = [self valueForKey:@"_post"];
 	NSURL *url = [feedItem highestResolutionPhotoURL];
 	if (url) {
-		[[IPDownloader sharedInstance] downloadPhotoFromURL: url withGestureRecognizer: sender];
+		[[IPDownloader sharedInstance] downloadAndSavePhotoFromURL:url 
+									   completion: ^(NSError *error){
+			if (error) {
+				[[UIAlertController errorAlertForError:error] show];
+			} else {
+				[[UIAlertController localizedAlertWithTitle:@"generic.success"
+				                                    message: @"alert.success.photo_downloaded"] show];
+			}
+			dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+			dispatch_after(delay, dispatch_get_main_queue(), ^{
+				guard = NO;
+				[sender setEnabled: YES];
+			});
+		}];
 	}
 }
 
@@ -109,6 +130,33 @@
 	[[UIAlertController likeAlertWithPostType:PostTypeVideo success: ^{
 		%orig;
 	}] show];
+}
+
+- (void)didMoveToWindow {
+	id videoView = [self valueForKey:@"_videoView"];
+	BOOL hasLongPressGR = NO;
+	for (UIGestureRecognizer *gr in [videoView gestureRecognizers]) {
+		if ([gr isKindOfClass:[UILongPressGestureRecognizer class]]) {
+			hasLongPressGR = YES;
+			break;
+		}
+	}
+	if (!hasLongPressGR) {
+		id longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget: self 
+		                                                                 action: @selector(didLongPressOnVideo:)];
+											
+		[videoView addGestureRecognizer: longGestureRecognizer];
+	}
+}
+
+%new
+- (void)didLongPressOnVideo:(id)sender {
+	if (!HAS_FEATURE(DownloadVideo)) { return; }
+	IGFeedItem *feedItem = [self valueForKey:@"_post"];
+	NSURL *url = [feedItem highestResolutionVideoURL];
+	if (url) {
+
+	}
 }
 
 %end

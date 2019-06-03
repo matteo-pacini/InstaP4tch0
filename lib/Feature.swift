@@ -7,6 +7,7 @@ public enum Feature: Int {
     case doubleTapGuardPage
     case doubleTapGuardVideo
     case downloadPhoto
+    case downloadVideo
 }
 
 @objc(IPFeatureManager)
@@ -20,13 +21,14 @@ public class FeatureManager: NSObject {
 extension Feature {
 
     var userDefaultsKey: String {
-        let base = "instap4tch0.feature"
+        let base = "feature"
         switch self {
             case .hideSponsoredContent: return "\(base).hideSponsoredContent"
             case .doubleTapGuardPhoto: return "\(base).doubleTapGuardPhoto"
             case .doubleTapGuardPage: return "\(base).doubleTapGuardPage"
             case .doubleTapGuardVideo: return "\(base).doubleTapGuardVideo"
             case .downloadPhoto: return "\(base).downloadPhoto"
+            case .downloadVideo: return "\(base).downloadVideo"
         }
     }
 

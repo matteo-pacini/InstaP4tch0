@@ -1,5 +1,6 @@
 import UIKit
 import QuickTableViewController
+import Photos
 
 @objc(IPSettingsViewController)
 public class SettingsViewController: QuickTableViewController {
@@ -17,8 +18,12 @@ public class SettingsViewController: QuickTableViewController {
                 row(named: Bundle.L("settings.double_tap_guard.video"), for: .doubleTapGuardVideo)
             ]),
             Section(title: Bundle.L("settings.download"), rows: [
-                row(named: Bundle.L("settings.download.photo"), for: .downloadPhoto)
-            ]),
+                row(named: Bundle.L("settings.download.photo"), for: .downloadPhoto) { value in
+                    if value && PHPhotoLibrary.authorizationStatus() != .authorized {
+                        PHPhotoLibrary.requestAuthorization { _ in }
+                    }
+                }
+            ], footer: Bundle.L("settings.download.footer")),
             Section(title: Bundle.L("settings.open_source"), rows: [
                 NavigationRow(text: "Alamofire", detailText: .value1(alamofireVersion)),
                 NavigationRow(text: "MBProgressHUD", detailText: .value1(mbProgressHudVersion)),
@@ -33,10 +38,11 @@ public class SettingsViewController: QuickTableViewController {
         ]
     }
 
-    private func row(named: String, for feature: Feature) -> Row & RowStyle {
+    private func row(named: String, for feature: Feature, then: ((Bool) -> Void)? = nil) -> Row & RowStyle {
         return SwitchRow(text: named, switchValue: feature.value, action: { row in
             guard let row = row as? SwitchRow else { return }
             feature.set(row.switchValue)
+            then?(row.switchValue)
         })
     }
 
