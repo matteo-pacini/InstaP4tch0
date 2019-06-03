@@ -12,6 +12,8 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 
 ![feed screenshot](screenshots/feed.jpeg)
 
+![settings screenshot](screenshots/settings.png)
+
 # Implemented Features
 
 - In app settings to enable/disable features (long press on InstaP4tch0 logo).
