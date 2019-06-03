@@ -15,7 +15,7 @@ public class Downloader: NSObject {
     public func downloadAndSavePhoto(from url: URL, completion: @escaping (Error?) -> Void) {
         guard let window = UIApplication.shared.keyWindow else { return }
         let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
-        progressHUD.label.text = "Downloading photo..."
+        progressHUD.label.text = Bundle.L("downloading.photo")
         AF.request(url)
         .responseData { [weak self] response in
             guard let self = self else { return }

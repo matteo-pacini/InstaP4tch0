@@ -6,6 +6,8 @@
 "generic.error" = "Errore";
 "generic.success" = "Successo";
 
+"downloading.photo" = "Scaricamento foto in corso...";
+
 "alert.double_tap_guard.message" = "Vuoi mettere mi piace a %@?";
 "alert.double_tap_guard.type.photo" = "questa foto";
 "alert.double_tap_guard.type.page" = "queste pagine";

@@ -6,6 +6,8 @@
 "generic.error" = "Error";
 "generic.success" = "Success";
 
+"downloading.photo" = "Downloading photo...";
+
 "alert.double_tap_guard.message" = "Do you want to like %@?";
 "alert.double_tap_guard.type.photo" = "this photo";
 "alert.double_tap_guard.type.page" = "these pages";
