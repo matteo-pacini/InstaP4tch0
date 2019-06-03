@@ -13,7 +13,7 @@
 
 - (BOOL)shouldHideFeedItem:(id)feedItem {
 	if (HAS_FEATURE(HideSponsoredContent)) {
-		return %orig && [feedItem valueForKey:@"_sponsoredPostInfo"] != nil;
+		return %orig || [feedItem valueForKey:@"_sponsoredPostInfo"] != nil;
 	}
 	return %orig;
 }
