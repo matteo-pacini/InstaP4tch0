@@ -22,7 +22,8 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 
 # Coming Soon
 
-- TBW
+- Long press on a video to download it.
+- Long press on pages to download all the media.
 
 # Not working
 
@@ -38,9 +39,15 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 - iOS 12.2 Theos-ready SDK (https://github.com/DavidSkrundz/sdks)
 - Instagram universal IPA (iMazing to make sure it's universal -> jailbroken device -> decrypt)
 
+# Swift runtime
+
+Added Swift 5 thinned runtime (`armv7` / `arm64`) in `Resources/Frameworks` to make the IPA work on devices running older versions of iOS (from 10.x.x to 12.1.x)
+
 # Sideloading
 
-- Sideloaded successfully via Cydia Impactor and ios-deploy
+Tested utilities:
+- `Cydia Impactor`
+- `ios-deploy`
 
 # Instagram IPA version
 
