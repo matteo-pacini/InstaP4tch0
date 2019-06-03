@@ -1,6 +1,15 @@
 
 #import <Foundation/Foundation.h>
 
+@interface IGMainAppHeaderView: UIView
+@end
+
+@interface IGFeedItemPhotoCell: UIView
+@end
+
+@interface IGFeedItemVideoCell: UIView
+@end
+
 @class IGPostItem;
 @interface IGFeedItem: NSObject
 @property(retain) NSArray<IGPostItem *> *items; 

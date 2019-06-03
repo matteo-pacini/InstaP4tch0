@@ -10,3 +10,5 @@ extension Bundle {
     }   
 
 }
+
+func L(_ localizedKey: String) -> String { return Bundle.L(localizedKey) }

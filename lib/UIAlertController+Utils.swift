@@ -10,8 +10,8 @@ extension UIAlertController {
 
     @objc(errorAlertForError:)
     public static func errorAlert(for error: Error?) -> UIAlertController {
-        let message = error?.localizedDescription ?? Bundle.L("alert.error.default_message")
-        let alert = UIAlertController(title: Bundle.L("generic.error"),
+        let message = error?.localizedDescription ?? L("alert.error.default_message")
+        let alert = UIAlertController(title: L("generic.error"),
                                       message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertController.Actions.dismiss())
@@ -20,8 +20,8 @@ extension UIAlertController {
 
     @objc(localizedAlertWithTitle:message:)
     public static func localizedAlert(withTitle title: String, message: String) -> UIAlertController {
-        let alert = UIAlertController(title: Bundle.L(title),
-                                      message: Bundle.L(message),
+        let alert = UIAlertController(title: L(title),
+                                      message: L(message),
                                       preferredStyle: .alert)
         alert.addAction(UIAlertController.Actions.dismiss())
         return alert

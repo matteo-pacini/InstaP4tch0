@@ -1,6 +1,6 @@
 import UIKit
 
-@objc
+@objc(IPImageResource)
 public enum ImageResource: Int {
     case logo
 }

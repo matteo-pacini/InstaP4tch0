@@ -5,24 +5,15 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 
 #import <instap4tch0-Swift.h>
-#define HAS_FEATURE(X) [IPFeatureManager isFeatureEnabled:Feature##X]
+#define HAS_FEATURE(X) [IPFeatureManager isFeatureEnabled:IPFeature##X]
 
 #import "Categories.h"
-
-@interface IGMainAppHeaderView: UIView
-@end
-
-@interface IGFeedItemPhotoCell: NSObject
-@end
-
-@interface IGFeedItemVideoCell: NSObject
-@end
 
 %hook IGMainFeedItemConfiguration
 
 - (BOOL)shouldHideFeedItem:(id)feedItem {
 	if (HAS_FEATURE(HideSponsoredContent)) {
-		return [feedItem valueForKey:@"_sponsoredPostInfo"] != nil;
+		return %orig && [feedItem valueForKey:@"_sponsoredPostInfo"] != nil;
 	}
 	return %orig;
 }
@@ -34,10 +25,11 @@
 - (void)collectionView:(id)collectionView 
         willDisplayCell:(id)cell
 		forItemAtIndexPath:(id)indexPath {
-	if ([cell isKindOfClass:NSClassFromString(@"IGHiddenReasonListCell")] && HAS_FEATURE(HideSponsoredContent)) {
+
+	if ([cell isKindOfClass:%c(IGHiddenReasonListCell)] && HAS_FEATURE(HideSponsoredContent)) {
 			UITableView *tableView = [cell valueForKey:@"_tableView"];
 			// Tap "Not relevant" on tombstone cell
-			id indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+			NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
 			[tableView.delegate tableView:tableView
 			                    didSelectRowAtIndexPath:indexPath];
 	} else {
@@ -51,7 +43,7 @@
 
 + (UIImage *)imageNamed:(NSString *)name {
 	if ([name isEqualToString:@"logotype-feed"]) {
-		return [[UIImage alloc] initWithResource: ImageResourceLogo];
+		return [[UIImage alloc] initWithResource: IPImageResourceLogo];
 	}
 	return %orig;
 }
@@ -62,7 +54,7 @@
 
 - (void)feedPhotoDidDoubleTapToLike:(id)tap locationInfo:(id)locationInfo {
 	if (!HAS_FEATURE(DoubleTapGuardPhoto)) { %orig; return; }
-	[[UIAlertController likeAlertWithPostType:PostTypePhoto success: ^{
+	[[UIAlertController likeAlertWithPostType:IPPostTypePhoto success: ^{
 		%orig;
 	}] show];
 }
@@ -71,14 +63,15 @@
 	id photoView = [self valueForKey:@"_photoView"];
 	BOOL hasLongPressGR = NO;
 	for (UIGestureRecognizer *gr in [photoView gestureRecognizers]) {
-		if ([gr isKindOfClass:[UILongPressGestureRecognizer class]]) {
+		if ([gr isKindOfClass:%c(UILongPressGestureRecognizer)]) {
 			hasLongPressGR = YES;
 			break;
 		}
 	}
 	if (!hasLongPressGR) {
-		id longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget: self 
-		                                                                 action: @selector(didLongPressOnPhoto:)];
+		UILongPressGestureRecognizer *longGestureRecognizer = 
+		[[UILongPressGestureRecognizer alloc] initWithTarget: self 
+		                                      action: @selector(didLongPressOnPhoto:)];
 		[photoView addGestureRecognizer: longGestureRecognizer];
 	}
 }
@@ -116,7 +109,7 @@
 
 - (void)pageMediaViewDidDoubleTap:(id)tap {
 	if (!HAS_FEATURE(DoubleTapGuardPage)) { %orig; return; }
-	[[UIAlertController likeAlertWithPostType:PostTypePage success: ^{
+	[[UIAlertController likeAlertWithPostType:IPPostTypePage success: ^{
 		%orig;
 	}] show];
 }
@@ -127,7 +120,7 @@
 
 - (void)didDoubleTapFeedItemVideoView:(id)tap {
 	if (!HAS_FEATURE(DoubleTapGuardVideo)) { %orig; return; }
-	[[UIAlertController likeAlertWithPostType:PostTypeVideo success: ^{
+	[[UIAlertController likeAlertWithPostType:IPPostTypeVideo success: ^{
 		%orig;
 	}] show];
 }
@@ -142,9 +135,9 @@
 		}
 	}
 	if (!hasLongPressGR) {
-		id longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget: self 
-		                                                                 action: @selector(didLongPressOnVideo:)];
-											
+		UILongPressGestureRecognizer *longGestureRecognizer = 
+		[[UILongPressGestureRecognizer alloc] initWithTarget: self 
+		                                      action: @selector(didLongPressOnVideo:)];
 		[videoView addGestureRecognizer: longGestureRecognizer];
 	}
 }
@@ -167,19 +160,22 @@
 	%orig;
 	static dispatch_once_t once;
     dispatch_once(&once, ^{
-			id logoButton = [self valueForKey:@"_logoButton"];
-      id longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget: self 
-		                                                                 action: @selector(didLongPressLogoButton:)];
-											
-			[logoButton addGestureRecognizer: longGestureRecognizer];
+		id logoButton = [self valueForKey:@"_logoButton"];
+      	UILongPressGestureRecognizer *longGestureRecognizer = 
+		[[UILongPressGestureRecognizer alloc] initWithTarget: self 
+		                                      action: @selector(didLongPressLogoButton:)];			
+		[logoButton addGestureRecognizer: longGestureRecognizer];
     });
 }
 
 %new
 - (void)didLongPressLogoButton:(id)sender {
-	id settingsVC = [[IPSettingsViewController alloc] initWithNibName: nil bundle: nil];
-	id navigationController = [[UINavigationController alloc] initWithRootViewController: settingsVC];
-	id rootVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+	IPSettingsViewController *settingsVC = 
+		[[IPSettingsViewController alloc] initWithNibName: nil bundle: nil];
+	UINavigationController *navigationController = 
+		[[UINavigationController alloc] initWithRootViewController: settingsVC];
+	UIViewController *rootVC = 
+		[[[UIApplication sharedApplication] keyWindow] rootViewController];
 	[rootVC presentViewController: navigationController animated: YES completion: nil];
 }
 

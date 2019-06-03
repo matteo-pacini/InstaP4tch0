@@ -1,6 +1,6 @@
 import Foundation
 
-@objc
+@objc(IPPostType)
 public enum PostType: Int {
     case photo
     case page
@@ -11,9 +11,9 @@ extension PostType {
 
     var doubleTapString: String {
         switch self {
-            case .photo: return Bundle.L("alert.double_tap_guard.type.photo")
-            case .page: return Bundle.L("alert.double_tap_guard.type.page")
-            case .video: return Bundle.L("alert.double_tap_guard.type.video")
+            case .photo: return L("alert.double_tap_guard.type.photo")
+            case .page: return L("alert.double_tap_guard.type.page")
+            case .video: return L("alert.double_tap_guard.type.video")
         }
     }
 

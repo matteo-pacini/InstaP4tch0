@@ -1,6 +1,6 @@
 import Foundation
 
-@objc
+@objc(IPFeature)
 public enum Feature: Int {
     case hideSponsoredContent
     case doubleTapGuardPhoto
