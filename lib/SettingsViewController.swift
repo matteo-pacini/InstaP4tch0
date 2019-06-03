@@ -19,6 +19,11 @@ public class SettingsViewController: QuickTableViewController {
             Section(title: Bundle.L("settings.download"), rows: [
                 row(named: Bundle.L("settings.download.photo"), for: .downloadPhoto)
             ]),
+            Section(title: Bundle.L("settings.open_source"), rows: [
+                NavigationRow(text: "Alamofire", detailText: .value1(alamofireVersion)),
+                NavigationRow(text: "MBProgressHUD", detailText: .value1(mbProgressHudVersion)),
+                NavigationRow(text: "QuickTableViewController", detailText: .value1(quickTableViewControllerVersion)),
+            ], footer: Bundle.L("settings.open_source.footer")),
             Section(title: Bundle.L("settings.actions"), rows: [
                 TapActionRow(text: Bundle.L("generic.dismiss"), action: { [weak self] _ in
                     guard let self = self else { return }
@@ -35,4 +40,27 @@ public class SettingsViewController: QuickTableViewController {
         })
     }
 
+    private var alamofireVersion: String {
+        guard let aClass = NSClassFromString("_TtC9Alamofire15SessionDelegate"),
+              let versionString = Bundle(for: aClass).infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return "N/A"
+        }
+        return versionString
+    }
+
+    private var mbProgressHudVersion: String {
+        guard let aClass = NSClassFromString("MBProgressHUD"),
+              let versionString = Bundle(for: aClass).infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return "N/A"
+        }
+        return versionString
+    }
+
+    private var quickTableViewControllerVersion: String {
+        guard let aClass = NSClassFromString("_TtC24QuickTableViewController24QuickTableViewController"),
+              let versionString = Bundle(for: aClass).infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return "N/A"
+        }
+        return versionString
+    }
 }

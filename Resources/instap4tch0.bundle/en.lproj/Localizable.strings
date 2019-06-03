@@ -17,4 +17,6 @@
 "settings.double_tap_guard.video" = "Video";
 "settings.download" = "Long press to download";
 "settings.download.photo" = "Photo";
+"settings.open_source" = "Open source libraries";
+"settings.open_source.footer" = "InstaP4tch0 uses these components to bring you a better Instagram experience.";
 "settings.actions" = "Actions";

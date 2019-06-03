@@ -18,10 +18,11 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 - Localised in: 🇬🇧, 🇮🇹.
 - Hide sponsored content.
 - Double tap guard when liking a photo, pages or a video.
+- Long press on a photo to download it.
 
 # Coming Soon
 
-- More...
+- TBW
 
 # Not working
 
