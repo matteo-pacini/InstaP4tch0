@@ -51,6 +51,14 @@
 
 %end 
 
+%hook IGStoryViewerViewController
+
+-(BOOL)_canFetchAd {
+	return %orig && !HAS_FEATURE(HideSponsoredContent);
+}
+
+%end
+
 %hook UIImage
 
 + (UIImage *)imageNamed:(NSString *)name {
