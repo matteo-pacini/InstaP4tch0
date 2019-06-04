@@ -98,7 +98,8 @@
 	IGFeedItem *feedItem = [self valueForKey:@"_post"];
 	NSURL *url = [feedItem highestResolutionPhotoURL];
 	if (url) {
-		[[IPDownloader sharedInstance] downloadAndSavePhotoFromURL:url 
+		[[IPDownloader sharedInstance] downloadPost:IPPostTypePhoto
+		                 withURL:url 
 									   completion: ^(NSError *error){
 			if (error) {
 				[[UIAlertController errorAlertForError:error] show];
@@ -164,7 +165,8 @@
 	IGFeedItem *feedItem = [self valueForKey:@"_post"];
 	NSURL *url = [feedItem highestResolutionVideoURL];
 	if (url) {
-		[[IPDownloader sharedInstance] downloadAndSaveVideoFromURL:url 
+		[[IPDownloader sharedInstance] downloadPost:IPPostTypeVideo
+		                 withURL:url 
 									   completion: ^(NSError *error){
 			if (error) {
 				[[UIAlertController errorAlertForError:error] show];

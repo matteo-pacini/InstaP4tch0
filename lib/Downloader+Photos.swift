@@ -39,37 +39,13 @@ extension Downloader {
         completion(album, nil)
     }
 
-    func save(image: UIImage, completion: @escaping (Error?) -> Void) {
+    func save(post: PostType, with url: URL, completion: @escaping (Error?) -> Void) {
         getAlbum { album, error in
             guard let album = album else {
                 return completion(error)
             }
             PHPhotoLibrary.shared().performChanges({
-                let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
-                let assetPlaceholder = assetChangeRequest.placeholderForCreatedAsset
-                let albumChangeRequest = PHAssetCollectionChangeRequest(for: album)
-                guard let ap = assetPlaceholder else {
-                    DispatchQueue.main.async {
-                        completion(nil)
-                    }
-                    return
-                }
-                albumChangeRequest?.addAssets([ap] as NSArray)
-            }, completionHandler: { success, error in
-                DispatchQueue.main.async {
-                    completion(error)
-                }
-            })
-        }
-    }
-
-    func save(video: URL, completion: @escaping (Error?) -> Void) {
-        getAlbum { album, error in
-            guard let album = album else {
-                return completion(error)
-            }
-            PHPhotoLibrary.shared().performChanges({
-                guard let assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: video),
+                guard let assetChangeRequest = post.assetChangeRequest(with: url),
                       let assetPlaceholder = assetChangeRequest.placeholderForCreatedAsset else {
                     DispatchQueue.main.async {
                         completion(nil)
@@ -85,4 +61,17 @@ extension Downloader {
             })
         }
     }
+
+}
+
+private extension PostType {
+
+    func assetChangeRequest(with url: URL) -> PHAssetChangeRequest? {
+        switch self {
+            case .photo: return PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
+            case .video: return PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
+            default: return nil
+        }
+    }
+
 }
