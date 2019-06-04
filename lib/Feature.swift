@@ -10,6 +10,7 @@ public enum Feature: Int {
     case downloadVideo
     case seeStoriesAsJohnCena
     case seeDirectMessagesAsJohnCena
+    case mainFeedSideScrolling
 }
 
 @objc(IPFeatureManager)
@@ -33,11 +34,22 @@ extension Feature {
             case .downloadVideo: return "\(base).downloadVideo"
             case .seeStoriesAsJohnCena: return "\(base).seeStoriesAsJohnCena"
             case .seeDirectMessagesAsJohnCena: return "\(base).seeDirectMessagesAsJohnCena"
+            case .mainFeedSideScrolling: return "\(base).mainFeedSideScrolling"
+        }
+    }
+
+    var defaultValue: Bool {
+        switch self {
+            case .mainFeedSideScrolling: return true
+            default: return false
         }
     }
 
     var value: Bool {
-        return UserDefaults.standard.bool(forKey: userDefaultsKey)
+        guard let obj = UserDefaults.standard.object(forKey: userDefaultsKey) as? NSNumber else {
+            return defaultValue
+        }
+        return obj.boolValue
     }
 
     func set(_ value: Bool) {

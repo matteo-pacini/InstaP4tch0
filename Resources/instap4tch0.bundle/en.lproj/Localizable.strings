@@ -32,5 +32,7 @@
 "settings.stories.as_john_cena" = "Don't send seen status";
 "settings.direct_messages" = "Direct Messages";
 "settings.direct_messages.as_john_cena" = "Don't send seen status";
+"settings.main_feed" = "Main Feed";
+"settings.main_feed.side_scrolling" = "Side scrolling"; 
 "settings.open_source" = "Open source libraries";
 "settings.open_source.footer" = "InstaP4tch0 uses these components to bring you a better Instagram experience.";

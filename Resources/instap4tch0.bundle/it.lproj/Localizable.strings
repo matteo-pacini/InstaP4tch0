@@ -32,5 +32,7 @@
 "settings.stories.as_john_cena" = "Non segnare come viste";
 "settings.direct_messages" = "Messaggi diretti";
 "settings.direct_messages.as_john_cena" = "Non segnare come visti";
+"settings.main_feed" = "Feed Principale";
+"settings.main_feed.side_scrolling" = "Scrolling laterale"; 
 "settings.open_source" = "Librerie open source";
 "settings.open_source.footer" = "InstaP4tch0 utilizza questi componenti per regalarti un'esperienza Instagram migliore.";

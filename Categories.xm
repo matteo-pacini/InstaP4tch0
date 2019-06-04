@@ -36,3 +36,24 @@
 }
 
 %end
+
+%hook IPSettingsViewController
+
+- (void)viewDidLoad {
+    %orig;
+    if (%c(FLEXManager) != nil) {
+        UIBarButtonItem *flexBarButtonItem =
+        [[UIBarButtonItem alloc] initWithTitle: @"FLEX"
+                                  style: UIBarButtonItemStylePlain
+                                  target: self
+                                  action:@selector(showFLEX)];
+        self.navigationItem.leftBarButtonItem = flexBarButtonItem;
+    }
+}
+
+%new
+- (void)showFLEX {
+    [[%c(FLEXManager) sharedManager] showExplorer];
+}
+
+%end

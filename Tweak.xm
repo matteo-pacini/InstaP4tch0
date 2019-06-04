@@ -235,3 +235,17 @@
  }
 
 %end
+
+%hook Appirater
+
+- (void)showRatingAlert { }
+
+%end
+
+%hook IGMainAppScrollingContainerViewController
+
+- (BOOL)gestureRecognizerShouldBegin:(id)gestureRecognizer {
+	return %orig && HAS_FEATURE(MainFeedSideScrolling);
+}
+
+%end

@@ -40,6 +40,9 @@ public class SettingsViewController: QuickTableViewController {
             Section(title: L("settings.direct_messages"), rows: [
                 row(named: L("settings.direct_messages.as_john_cena"), for: .seeDirectMessagesAsJohnCena)
             ]),
+            Section(title: L("settings.main_feed"), rows: [
+                row(named: L("settings.main_feed.side_scrolling"), for: .mainFeedSideScrolling)
+            ]),
             Section(title: L("settings.open_source"), rows: [
                 NavigationRow(text: "Alamofire", detailText: .value1(Bundle.alamofire.shortVersionString)),
                 NavigationRow(text: "MBProgressHUD", detailText: .value1(Bundle.mbProgressHud.shortVersionString)),

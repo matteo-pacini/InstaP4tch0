@@ -26,4 +26,13 @@ extension UIAlertController {
         alert.addAction(UIAlertController.Actions.dismiss())
         return alert
     }
+
+    @objc(debugAlertWithItem:)
+    public static func debugAlert(with item: AnyObject) -> UIAlertController {
+         let alert = UIAlertController(title: "Debug",
+                                      message: item.debugDescription,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertController.Actions.dismiss())
+        return alert
+    }
 }

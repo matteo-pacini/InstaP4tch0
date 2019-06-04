@@ -23,6 +23,8 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 - Long press on a photo/video to download it.
 - Don't mark stories as seen.
 - Don't mark direct messages as seen.
+- No more prompts to rate the app.
+- Toggle side scrolling for main feed
 
 # Coming Soon
 
