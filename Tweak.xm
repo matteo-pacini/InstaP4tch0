@@ -9,6 +9,11 @@
 
 #import "Categories.h"
 
+UIViewController *topMostVC() {
+	id rootVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+	return [rootVC topMostViewController];
+}
+
 %hook IGAppDelegate
 
 - (void)registerForPushWithUserSession:(id)arg1 { }
@@ -76,7 +81,7 @@
 	if (!HAS_FEATURE(DoubleTapGuardPhoto)) { %orig; return; }
 	[[UIAlertController likeAlertWithPostType:IPPostTypePhoto success: ^{
 		%orig;
-	}] show];
+	}] showOnViewController:topMostVC()];
 }
 
 - (void)didMoveToWindow {
@@ -110,10 +115,10 @@
 		                 withURL:url 
 									   completion: ^(NSError *error){
 			if (error) {
-				[[UIAlertController errorAlertForError:error] show];
+				[[UIAlertController errorAlertForError:error] showOnViewController:topMostVC()];
 			} else {
 				[[UIAlertController localizedAlertWithTitle:@"generic.success"
-				                                    message: @"alert.success.photo_downloaded"] show];
+				                                    message: @"alert.success.photo_downloaded"] showOnViewController:topMostVC()];
 			}
 			dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
 			dispatch_after(delay, dispatch_get_main_queue(), ^{
@@ -132,7 +137,7 @@
 	if (!HAS_FEATURE(DoubleTapGuardPage)) { %orig; return; }
 	[[UIAlertController likeAlertWithPostType:IPPostTypePage success: ^{
 		%orig;
-	}] show];
+	}] showOnViewController:topMostVC()];
 }
 
 %end
@@ -143,7 +148,7 @@
 	if (!HAS_FEATURE(DoubleTapGuardVideo)) { %orig; return; }
 	[[UIAlertController likeAlertWithPostType:IPPostTypeVideo success: ^{
 		%orig;
-	}] show];
+	}] showOnViewController:topMostVC()];
 }
 
 - (void)didMoveToWindow {
@@ -177,10 +182,10 @@
 		                 withURL:url 
 									   completion: ^(NSError *error){
 			if (error) {
-				[[UIAlertController errorAlertForError:error] show];
+				[[UIAlertController errorAlertForError:error] showOnViewController:topMostVC()];
 			} else {
 				[[UIAlertController localizedAlertWithTitle:@"generic.success"
-				                                    message: @"alert.success.video_downloaded"] show];
+				                                    message: @"alert.success.video_downloaded"] showOnViewController:topMostVC()];
 			}
 			dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
 			dispatch_after(delay, dispatch_get_main_queue(), ^{
@@ -246,6 +251,48 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(id)gestureRecognizer {
 	return %orig && HAS_FEATURE(MainFeedSideScrolling);
+}
+
+%end
+
+%hook IGActionSheetConfiguration
+
++ (void)_configureActionSheetShareOptionsWithButtons:(id)arg1 feedItem:(id)arg2 userSession:(id)arg3 {
+	// TODO: Keep me for future reference
+	%orig;
+}
+
+%end
+
+%hook IGStoryViewerViewController 
+
+- (void)fullscreenSectionControllerDidLongPress:(id)arg1 {
+	%orig;
+	id focusedViewModel = [self valueForKey:@"_focusedModelItem"];
+	if (HAS_FEATURE(DownloadStory) && ![focusedViewModel isLive]) {
+		[self performSelector:@selector(_downloadStory)];
+	}
+}
+
+%new
+- (void)_downloadStory {
+	id storyVC = topMostVC();
+	IGFeedItem *currentStoryItem = [storyVC currentStoryItem];
+	IPPostType postType = IPPostTypeVideo;
+	NSURL *url = [currentStoryItem highestResolutionVideoURL];
+	if (!url) { url = [currentStoryItem highestResolutionPhotoURL]; postType = IPPostTypePhoto; }
+	if (url) {
+		[[IPDownloader sharedInstance] downloadPost:postType
+		                 withURL:url 
+									   completion: ^(NSError *error){
+				if (error) {
+				[[UIAlertController errorAlertForError:error] showOnViewController:topMostVC()];
+			} else {
+				[[UIAlertController localizedAlertWithTitle:@"generic.success"
+				                                    message: @"alert.success.story_downloaded"] showOnViewController:topMostVC()];
+			}
+		}];
+	}
 }
 
 %end

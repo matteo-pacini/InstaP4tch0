@@ -20,7 +20,7 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 - Localised in: 🇬🇧, 🇮🇹.
 - Hide sponsored content (main feed / stories).
 - Double tap guard when liking a photo, pages or a video.
-- Long press on a photo/video to download it.
+- Long press on a photo/video/story to download it.
 - Don't mark stories as seen.
 - Don't mark direct messages as seen.
 - No more prompts to rate the app.
@@ -28,7 +28,6 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 
 # Coming Soon
 
-- Download a story.
 - Long press on pages to download all the media.
 
 # Not working (and probably will never work)

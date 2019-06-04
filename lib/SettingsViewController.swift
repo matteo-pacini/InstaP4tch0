@@ -32,6 +32,11 @@ public class SettingsViewController: QuickTableViewController {
                     if value && PHPhotoLibrary.authorizationStatus() != .authorized {
                         PHPhotoLibrary.requestAuthorization { _ in }
                     }
+                },
+                row(named: L("settings.download.story"), for: .downloadStory) { value in
+                    if value && PHPhotoLibrary.authorizationStatus() != .authorized {
+                        PHPhotoLibrary.requestAuthorization { _ in }
+                    }
                 }
             ], footer: L("settings.download.footer")),
             Section(title: L("settings.stories"), rows: [

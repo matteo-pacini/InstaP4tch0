@@ -17,6 +17,7 @@
 "alert.error.default_message" = "Qualcosa è andato storto, ma non preoccuparti!\n(Forse) Zi0P4tch0 sistemerà tutto!"; 
 "alert.success.photo_downloaded" = "La foto è stata scaricata nell'album InstaP4tch0.";
 "alert.success.video_downloaded" = "Il video è stato scaricato nell'album InstaP4tch0.";
+"alert.success.story_downloaded" = "La storia è stata scaricata nell'album InstaP4tch0.";
 
 "settings.sponsored_content" = "Contenuti sponsorizzati";
 "settings.sponsored_content.hide" = "Nascondi";
@@ -27,6 +28,7 @@
 "settings.download" = "Premi a lungo per scaricare";
 "settings.download.photo" = "Foto";
 "settings.download.video" = "Video";
+"settings.download.story" = "Storia";
 "settings.download.footer" = "Foto e video verranno scaricate nell'album InstaP4tch0.";
 "settings.stories" = "Storie";
 "settings.stories.as_john_cena" = "Non segnare come viste";

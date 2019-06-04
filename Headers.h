@@ -38,3 +38,18 @@
 @interface IGVideo: NSObject
 @property(retain, nonatomic) NSArray<NSDictionary *> *videoVersions;
 @end
+
+@interface IGStoryFullscreenHeaderView: UIView
+@end
+
+@interface IGRootViewController: UIViewController
+- (id)topMostViewController;
+@end
+
+@interface IGStoryViewerViewController: UIViewController
+- (id)currentStoryItem;
+@end
+
+@interface IGStoryViewerViewModel: NSObject
+- (BOOL)isLive; 
+@end

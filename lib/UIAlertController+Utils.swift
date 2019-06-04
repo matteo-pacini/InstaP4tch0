@@ -8,6 +8,11 @@ extension UIAlertController {
         rootVC?.present(self, animated: true, completion: nil)
     }
 
+    @objc(showOnViewController:)
+    public func show(on viewController: UIViewController) {
+        viewController.present(self, animated: true, completion: nil)
+    }
+
     @objc(errorAlertForError:)
     public static func errorAlert(for error: Error?) -> UIAlertController {
         let message = error?.localizedDescription ?? L("alert.error.default_message")
