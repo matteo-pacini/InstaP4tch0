@@ -22,6 +22,11 @@ public class SettingsViewController: QuickTableViewController {
                     if value && PHPhotoLibrary.authorizationStatus() != .authorized {
                         PHPhotoLibrary.requestAuthorization { _ in }
                     }
+                },
+                row(named: L("settings.download.video"), for: .downloadVideo) { value in
+                    if value && PHPhotoLibrary.authorizationStatus() != .authorized {
+                        PHPhotoLibrary.requestAuthorization { _ in }
+                    }
                 }
             ], footer: L("settings.download.footer")),
             Section(title: L("settings.open_source"), rows: [
@@ -45,5 +50,6 @@ public class SettingsViewController: QuickTableViewController {
             then?(row.switchValue)
         })
     }
+
 
 }

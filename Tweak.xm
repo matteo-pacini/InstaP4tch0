@@ -9,6 +9,18 @@
 
 #import "Categories.h"
 
+%hook IGAppDelegate
+
+- (void)registerForPushWithUserSession:(id)arg1 { }
+
+%end
+
+%hook UIApplication
+
+- (void)registerForRemoteNotifications { }
+
+%end
+
 %hook IGMainFeedItemConfiguration
 
 - (BOOL)shouldHideFeedItem:(id)feedItem {
@@ -144,11 +156,28 @@
 
 %new
 - (void)didLongPressOnVideo:(id)sender {
+	static BOOL guard = NO;
 	if (!HAS_FEATURE(DownloadVideo)) { return; }
+	if (guard) { return; }
+	guard = YES;
+	[sender setEnabled: NO];
 	IGFeedItem *feedItem = [self valueForKey:@"_post"];
 	NSURL *url = [feedItem highestResolutionVideoURL];
 	if (url) {
-
+		[[IPDownloader sharedInstance] downloadAndSaveVideoFromURL:url 
+									   completion: ^(NSError *error){
+			if (error) {
+				[[UIAlertController errorAlertForError:error] show];
+			} else {
+				[[UIAlertController localizedAlertWithTitle:@"generic.success"
+				                                    message: @"alert.success.video_downloaded"] show];
+			}
+			dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+			dispatch_after(delay, dispatch_get_main_queue(), ^{
+				guard = NO;
+				[sender setEnabled: YES];
+			});
+		}];
 	}
 }
 

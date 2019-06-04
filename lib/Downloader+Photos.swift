@@ -63,4 +63,26 @@ extension Downloader {
         }
     }
 
+    func save(video: URL, completion: @escaping (Error?) -> Void) {
+        getAlbum { album, error in
+            guard let album = album else {
+                return completion(error)
+            }
+            PHPhotoLibrary.shared().performChanges({
+                guard let assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: video),
+                      let assetPlaceholder = assetChangeRequest.placeholderForCreatedAsset else {
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                    return
+                }
+                let albumChangeRequest = PHAssetCollectionChangeRequest(for: album)
+                albumChangeRequest?.addAssets([assetPlaceholder] as NSArray)
+            }, completionHandler: { success, error in
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            })
+        }
+    }
 }

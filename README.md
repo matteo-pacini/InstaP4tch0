@@ -20,14 +20,13 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 - Localised in: 🇬🇧, 🇮🇹.
 - Hide sponsored content.
 - Double tap guard when liking a photo, pages or a video.
-- Long press on a photo to download it.
+- Long press on a photo/video to download it.
 
 # Coming Soon
 
-- Long press on a video to download it.
 - Long press on pages to download all the media.
 
-# Not working
+# Not working (and probably will never work)
 
 - Push notifications
 - CloudKit related functionality

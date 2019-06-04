@@ -7,6 +7,7 @@
 "generic.success" = "Successo";
 
 "downloading.photo" = "Scaricamento foto in corso...";
+"downloading.video" = "Scaricamento video in corso...";
 
 "alert.double_tap_guard.message" = "Vuoi mettere mi piace a %@?";
 "alert.double_tap_guard.type.photo" = "questa foto";
@@ -15,6 +16,7 @@
 
 "alert.error.default_message" = "Qualcosa è andato storto, ma non preoccuparti!\n(Forse) Zi0P4tch0 sistemerà tutto!"; 
 "alert.success.photo_downloaded" = "La foto è stata scaricata nell'album InstaP4tch0.";
+"alert.success.video_downloaded" = "Il video è stato scaricato nell'album InstaP4tch0.";
 
 "settings.sponsored_content" = "Contenuti sponsorizzati";
 "settings.sponsored_content.hide" = "Nascondi";
@@ -24,6 +26,7 @@
 "settings.double_tap_guard.video" = "Video";
 "settings.download" = "Premi a lungo per scaricare";
 "settings.download.photo" = "Foto";
+"settings.download.video" = "Video";
 "settings.download.footer" = "Foto e video verranno scaricate nell'album InstaP4tch0.";
 "settings.open_source" = "Librerie open source";
 "settings.open_source.footer" = "InstaP4tch0 utilizza questi componenti per regalarti un'esperienza Instagram migliore.";

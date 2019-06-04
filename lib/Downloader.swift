@@ -33,4 +33,26 @@ public class Downloader: NSObject {
         }
     }
 
+    @objc(downloadAndSaveVideoFromURL:completion:)
+    public func downloadAndSaveVideo(from url: URL, completion: @escaping (Error?) -> Void) {
+        guard let window = UIApplication.shared.keyWindow else { return }
+        let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
+        progressHUD.label.text = L("downloading.video")
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .cachesDirectory)
+        AF.download(url, to: destination)
+        .response { [weak self] response in
+            guard let self = self else { return }
+            progressHUD.hide(animated: true)
+            guard let destinationURL = response.fileURL else {
+                return completion(response.error)
+            }
+            self.save(video: destinationURL) { error in
+                guard error != nil else {
+                    return completion(error)
+                }
+                completion(nil)
+            }
+        }
+
+    }
 }
