@@ -21,9 +21,12 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 - Hide sponsored content (main feed / stories).
 - Double tap guard when liking a photo, pages or a video.
 - Long press on a photo/video to download it.
+- Don't mark stories as seen.
+- Don't mark direct messages as seen.
 
 # Coming Soon
 
+- Download a story.
 - Long press on pages to download all the media.
 
 # Not working (and probably will never work)

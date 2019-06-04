@@ -28,6 +28,9 @@
 "settings.download.photo" = "Photo";
 "settings.download.video" = "Video";
 "settings.download.footer" = "Photos and video will be downloaded in the InstaP4tch0 album.";
+"settings.stories" = "Stories";
+"settings.stories.as_john_cena" = "Don't send seen status";
+"settings.direct_messages" = "Direct Messages";
+"settings.direct_messages.as_john_cena" = "Don't send seen status";
 "settings.open_source" = "Open source libraries";
 "settings.open_source.footer" = "InstaP4tch0 uses these components to bring you a better Instagram experience.";
-"settings.actions" = "Actions";

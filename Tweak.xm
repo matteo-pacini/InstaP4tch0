@@ -219,3 +219,19 @@
 }
 
 %end
+
+%hook IGStoryFullscreenSectionController
+
+- (void)_markItemAsSeen {
+	if (!HAS_FEATURE(SeeStoriesAsJohnCena)) { %orig; }
+}
+
+%end
+
+%hook IGDirectThreadLastSeenMessageTracker
+
+- (void)beginTracking {
+	if (!HAS_FEATURE(SeeDirectMessagesAsJohnCena)) { %orig; }
+ }
+
+%end

@@ -8,6 +8,11 @@ public class SettingsViewController: QuickTableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         title = "InstaP4tch0"
+        let doneBarButtonItem =
+            UIBarButtonItem(barButtonSystemItem: .done, 
+                            target: self,
+                            action: #selector(dismissMe))
+        self.navigationItem.rightBarButtonItem = doneBarButtonItem
         tableContents = [
             Section(title: L("settings.sponsored_content"), rows: [
                 row(named: L("settings.sponsored_content.hide"), for: .hideSponsoredContent)
@@ -29,17 +34,17 @@ public class SettingsViewController: QuickTableViewController {
                     }
                 }
             ], footer: L("settings.download.footer")),
+            Section(title: L("settings.stories"), rows: [
+                row(named: L("settings.stories.as_john_cena"), for: .seeStoriesAsJohnCena)
+            ]),
+            Section(title: L("settings.direct_messages"), rows: [
+                row(named: L("settings.direct_messages.as_john_cena"), for: .seeDirectMessagesAsJohnCena)
+            ]),
             Section(title: L("settings.open_source"), rows: [
                 NavigationRow(text: "Alamofire", detailText: .value1(Bundle.alamofire.shortVersionString)),
                 NavigationRow(text: "MBProgressHUD", detailText: .value1(Bundle.mbProgressHud.shortVersionString)),
                 NavigationRow(text: "QuickTableViewController", detailText: .value1(Bundle.quickTableViewController.shortVersionString)),
-            ], footer: L("settings.open_source.footer")),
-            Section(title: L("settings.actions"), rows: [
-                TapActionRow(text: L("generic.dismiss"), action: { [weak self] _ in
-                    guard let self = self else { return }
-                    self.dismiss(animated: true, completion: nil)
-                })
-            ])
+            ], footer: L("settings.open_source.footer"))
         ]
     }
 
@@ -51,5 +56,9 @@ public class SettingsViewController: QuickTableViewController {
         })
     }
 
+    @objc
+    private func dismissMe() {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }

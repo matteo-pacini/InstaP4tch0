@@ -8,6 +8,8 @@ public enum Feature: Int {
     case doubleTapGuardVideo
     case downloadPhoto
     case downloadVideo
+    case seeStoriesAsJohnCena
+    case seeDirectMessagesAsJohnCena
 }
 
 @objc(IPFeatureManager)
@@ -29,6 +31,8 @@ extension Feature {
             case .doubleTapGuardVideo: return "\(base).doubleTapGuardVideo"
             case .downloadPhoto: return "\(base).downloadPhoto"
             case .downloadVideo: return "\(base).downloadVideo"
+            case .seeStoriesAsJohnCena: return "\(base).seeStoriesAsJohnCena"
+            case .seeDirectMessagesAsJohnCena: return "\(base).seeDirectMessagesAsJohnCena"
         }
     }
 
