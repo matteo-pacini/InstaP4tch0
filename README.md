@@ -37,7 +37,7 @@ Made possibile by `theos-jailed` and `CydiaSubstrate`.
 
 - Theos (https://github.com/theos/theos)
 - Theos Jailed Module (https://github.com/kabiroberai/theos-jailed)
-    - Needs a patch for linking against Swift frameworks: https://github.com/kabiroberai/theos-jailed/issues/58#issuecomment-497927651
+    - ~~Needs a patch for linking against Swift frameworks: https://github.com/kabiroberai/theos-jailed/issues/58#issuecomment-497927651~~ Patch is now integrated in the Makefile
 - iOS 12.2 Theos-ready SDK (https://github.com/DavidSkrundz/sdks)
 - Instagram universal IPA (iMazing to make sure it's universal -> jailbroken device -> decrypt)
 

@@ -12,6 +12,7 @@ instap4tch0_IPA = ../Instagram.ipa
 instap4tch0_CFLAGS = -fobjc-arc -FFrameworks
 instap4tch0_LDFLAGS = -FFrameworks
 instap4tch0_EMBED_FRAMEWORKS = $(wildcard Frameworks/*.framework)
-instap4tch0_USE_FLEX = 1
+
+_THEOS_INTERNAL_SWIFTFLAGS += -FFrameworks $(patsubst %.framework,-framework %,$(notdir $(instap4tch0_EMBED_FRAMEWORKS)))
 
 include $(THEOS_MAKE_PATH)/tweak.mk
