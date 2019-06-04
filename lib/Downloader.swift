@@ -16,7 +16,7 @@ public class Downloader: NSObject {
         guard let window = UIApplication.shared.keyWindow else { return }
         let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
         progressHUD.label.text = post.downloadMessage
-        let destination = DownloadRequest.suggestedDownloadDestination(for: .cachesDirectory)
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .cachesDirectory, options: [.removePreviousFile])
         AF.download(url, to: destination)
         .response { [weak self] response in
             guard let self = self else { return }
